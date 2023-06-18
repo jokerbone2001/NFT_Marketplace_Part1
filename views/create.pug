@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  form(action="/create" method="post")
+    label Title
+    input(type="text" name="title")
+    label Author
+    input(type="text" name="author")
+    label Image URL
+    input(type="text" name="imageURL")
+    label Description
+    textarea(name="description")
+    label Price
+    input(type="number" name="price" step="any")
+    label Volume
+    input(type="number" name="volume" step="any")
+    button(type="submit") Create NFT

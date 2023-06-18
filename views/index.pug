@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  a(href="/create") Create a new NFT
+  .nft-grid
+    each nft in nfts
+      .nft-card
+        a(href=`/nft/${nft._id}`)
+          img.nft-image(src=nft.imageURL)
+          .nft-info
+            h2.nft-title= nft.title
+            

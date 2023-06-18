@@ -6,3 +6,49 @@ body {
 a {
   color: #00B7FF;
 }
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.nft-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.nft-image {
+  width: 100%;
+  height: auto;
+}
+
+.nft-info {
+  margin-top: 10px;
+}
+
+.nft-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.nft-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.nft-price {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.nft-volume {
+  font-size: 12px;
+  color: #777;
+}
+.nft-detail .nft-image {
+  max-width: 300px;
+  height: auto;
+}
