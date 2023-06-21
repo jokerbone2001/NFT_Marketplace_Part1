@@ -1,16 +1,50 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   .nft-card.nft-detail
+//-     img.nft-image(src=nft.imageURL)
+//-     .nft-info
+//-       h2.nft-title Title: #{nft.title}
+//-       p.nft-author Author: #{nft.author}
+//-       p.nft-description Description: #{nft.description}
+//-       p.nft-price Price: #{nft.price}
+//-       p.nft-volume Volume: #{nft.volume}
+//-   if nft.volume
+//-     form(action=`/nft/${nft._id}/mint` method="post")
+//-       label Wallet Address
+//-       input(type="text" name="owner")
+//-       button(type="submit") Mint NFT
+
+//-   form(action=`/nft/${nft._id}/delete` method="post")
+//-     button(type="submit") Delete NFT
+
+//-   each owner in nft.owner 
+//-     p #{owner}
 extends layout
 
 block content
-  h1= title
-  .nft-card.nft-detail
-    img.nft-image(src=nft.imageURL)
-    .nft-info
-      h2.nft-title Title: #{nft.title}
-      p.nft-author Author: #{nft.author}
-      p.nft-description Description: #{nft.description}
-      p.nft-price Price: #{nft.price}
-      p.nft-volume Volume: #{nft.volume}
-  form(action=`/nft/${nft._id}/mint` method="post")
-    label Wallet Address
-    input(type="text" name="owner")
-    button(type="submit") Mint NFT
+  .container.my-5
+    .row
+      .col-md-6.mx-auto
+        .card
+          img.card-img-top(src=nft.imageURL style="height: 200px; object-fit: contain;")
+          .card-body
+            h2.card-title Title: #{nft.title}
+            p.card-text Author: #{nft.author}
+            p.card-text Description: #{nft.description}
+            p.card-text Price: #{nft.price}
+            p.card-text Volume: #{nft.volume}
+            if nft.volume
+              form(action=`/nft/${nft._id}/mint` method="post")
+                .form-group
+                  label Wallet Address
+                  input.form-control(type="text" name="owner")
+                button.btn.btn-primary(type="submit") Mint NFT
+            form(action=`/nft/${nft._id}/delete` method="post")
+              button.btn.btn-danger(type="submit") Delete NFT
+            br/
+            h5 Owners
+            ul.list-group
+              each owner in nft.owner
+                li.list-group-item #{owner}

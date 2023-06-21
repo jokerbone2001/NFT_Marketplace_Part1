@@ -1,12 +1,16 @@
 extends layout
 
 block content
-  a(href="/create") Create a new NFT
-  .nft-grid
-    each nft in nfts
-      .nft-card
-        a(href=`/nft/${nft._id}`)
-          img.nft-image(src=nft.imageURL)
-          .nft-info
-            h2.nft-title= nft.title
-            
+  .container
+    .row
+      .col
+        h1= title
+        a.btn.btn-primary(href="/create") Create a new NFT
+    .row
+      each nft in nfts
+        .col-md-3
+          .card
+            img.card-img-top(src=nft.imageURL)
+            .card-body
+              h5.card-title= nft.title
+              a.btn.btn-primary(href=`/nft/${nft._id}`) View Details

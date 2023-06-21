@@ -1,18 +1,27 @@
 extends layout
 
 block content
-  h1= title
-  form(action="/create" method="post")
-    label Title
-    input(type="text" name="title")
-    label Author
-    input(type="text" name="author")
-    label Image URL
-    input(type="text" name="imageURL")
-    label Description
-    textarea(name="description")
-    label Price
-    input(type="number" name="price" step="any")
-    label Volume
-    input(type="number" name="volume" step="any")
-    button(type="submit") Create NFT
+  .container
+    .row
+      .col
+        h1= title
+        form(action="/create" method="post")
+          .form-group
+            label Title
+            input.form-control(type="text" name="title")
+          .form-group
+            label Author
+            input.form-control(type="text" name="author")
+          .form-group
+            label Image URL
+            input.form-control(type="text" name="imageURL")
+          .form-group
+            label Description
+            textarea.form-control(name="description")
+          .form-group
+            label Price
+            input.form-control(type="number" name="price" step="any")
+          .form-group
+            label Volume
+            input.form-control(type="number" name="volume" step="any")
+          button.btn.btn-primary(type="submit") Create NFT

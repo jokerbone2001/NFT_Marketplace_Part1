@@ -43,8 +43,18 @@ router.post('/create', function(req, res, next) {
 router.post('/nft/:id/mint', function(req, res, next) {
   NFT.findById(req.params.id)
     .then(nft => {
-      nft.owner = req.body.owner;
-      return nft.save();
+      if(nft.volume > 0)
+      {
+        nft.owner.push(req.body.owner);
+        nft.volume-=1;
+        return nft.save();
+      }
+      else
+      {
+        res.send("it is sold out");
+        res.end();
+      }
+      
     })
     .then(() => {
       res.redirect(`/nft/${req.params.id}`);
@@ -55,5 +65,15 @@ router.post('/nft/:id/mint', function(req, res, next) {
     });
 });
 
+router.post(`/nft/:id/delete`,function(req, res, next) {
+  NFT.findByIdAndRemove(req.params.id)
+    .then(nft => {
+      res.redirect(`/`);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+});
 
 module.exports = router;
