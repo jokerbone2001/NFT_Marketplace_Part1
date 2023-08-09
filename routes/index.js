@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var NFT = require('../models/NFT');
+var Order = require('../models/Orders');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -74,6 +75,48 @@ router.post(`/nft/:id/delete`,function(req, res, next) {
       console.log(err);
       next(err);
     });
+});
+// -----------------------------------------------------------
+router.get('/nft_json', function(req, res, next) {
+  NFT.find({})
+  .then(nfts => {
+    res.json(nfts);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
+router.get('/nft_json/:id', function(req, res, next) {
+  NFT.findById(req.params.id)
+    .then(nfts => {
+      res.json(nfts);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+router.post('/createNFT', function(req, res, next) {
+  const nft = new NFT(req.body);
+  nft.save()
+    .then(() => {
+      console.log("create successfully");
+      res.json("successfullt created");
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+});
+
+router.get('/order_json', function(req, res, next) {
+  Order.find({})
+  .then(orders => {
+    res.json(orders);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 });
 
 module.exports = router;
